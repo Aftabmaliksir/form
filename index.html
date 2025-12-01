@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>District Level Science Exhibition Registration</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f7f7f7;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 900px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
+    }
+
+    h2, h3 {
+        text-align: center;
+    }
+
+    label {
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        border: 1px solid #aaa;
+        border-radius: 6px;
+    }
+
+    .section {
+        margin-bottom: 35px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #ddd;
+    }
+
+    button {
+        width: 100%;
+        background: #007bff;
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    button:hover {
+        background: #005fcc;
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+        .container {
+            width: 96%;
+            padding: 15px;
+        }
+
+        button {
+            padding: 12px;
+            font-size: 16px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>
+District Level Science Exhibition Registration<br>
+ज़िला स्तरीय विज्ञान प्रदर्शनी पंजीकरण<br>
+ضلعی سطح کی سائنسی نمائش رجسٹریشن
+</h2>
+
+<!-- SECTION A -->
+<div class="section">
+    <h3>A. School Information / स्कूल की जानकारी / اسکول کی معلومات</h3>
+
+    <label>Name of School</label>
+    <input type="text" id="schoolName" required>
+
+    <label>School Address</label>
+    <textarea id="schoolAddress" required></textarea>
+
+    <label>Medium / माध्यम / میڈیم</label>
+    <input type="text" id="medium">
+
+    <label>School Type</label>
+    <select id="type">
+        <option>Government / सरकारी / سرکاری</option>
+        <option>Private / निजी / پرائیویٹ</option>
+    </select>
+</div>
+
+
+<!-- SECTION: DAY & TIME -->
+<div class="section">
+    <h3>Exhibition Schedule / समय / وقت</h3>
+
+    <label>Select Day</label>
+    <select id="day">
+        <option value="Day1">Day 1</option>
+        <option value="Day2">Day 2</option>
+    </select>
+
+    <label>Select Time Slot</label>
+    <select id="slot">
+        <option value="10-12">10:00 - 12:00</option>
+        <option value="12-2">12:00 - 2:00</option>
+        <option value="2-4">2:00 - 4:00</option>
+        <option value="4-6">4:00 - 6:00</option>
+    </select>
+</div>
+
+<button onclick="submitData()">Submit</button>
+
+</div>
+
+<script>
+function submitData() {
+    const data = {
+        schoolName: document.getElementById("schoolName").value,
+        schoolAddress: document.getElementById("schoolAddress").value,
+        medium: document.getElementById("medium").value,
+        type: document.getElementById("type").value,
+        day: document.getElementById("day").value,
+        slot: document.getElementById("slot").value
+    };
+
+    fetch("YOUR_WEBAPP_URL_HERE", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+    })
+    .then(res => res.json())
+    .then(response => alert(response.message))
+    .catch(err => alert("Error Connecting to Server"));
+}
+</script>
+
+</body>
+</html>
